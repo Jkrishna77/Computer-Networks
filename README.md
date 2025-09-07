@@ -132,5 +132,124 @@ In this model, **each device (peer)** can act as both **client and server**. The
 
 ---
 
+## 4. Protocols & Standards
 
+A **protocol** is a set of rules that define how data is transmitted and received over a network.  
+Without protocols, devices from different vendors would not be able to communicate reliably.
+
+---
+
+### 📜 Why Standards Matter
+- Networking involves millions of devices across the globe — from laptops and smartphones to routers and cloud servers.  
+- **Standards** ensure that all these devices can talk to each other, regardless of manufacturer.  
+- Example: A Windows laptop can connect to a Linux server using SSH because both follow the **SSH protocol standard**.  
+
+---
+
+### 🔑 Common Networking Protocols
+Here are the most widely used protocols in modern IT environments:
+
+| Layer (TCP/IP) | Protocol | Purpose | Real-World Example |
+|----------------|----------|---------|--------------------|
+| Application | **HTTP/HTTPS** | Web communication | Browsing `https://github.com` |
+| Application | **DNS** | Converts domain names → IP addresses | Resolving `github.com` to `140.82.xx.xx` |
+| Application | **SMTP, IMAP, POP3** | Email transmission & retrieval | Sending email via Gmail/Outlook |
+| Application | **FTP/SFTP** | File transfer | Uploading files to a server |
+| Application | **SSH** | Secure remote login | Connecting to a Linux VM in AWS |
+| Transport | **TCP** | Reliable communication | Git clone over HTTPS |
+| Transport | **UDP** | Low-latency communication | Online gaming, video streaming |
+| Internet | **IP (IPv4/IPv6)** | Logical addressing & routing | Sending packets across the Internet |
+| Internet | **ICMP** | Error reporting, diagnostics | `ping google.com` |
+| Network Access | **Ethernet, WiFi** | Physical + Data Link transmission | Office LAN, home WiFi |
+
+---
+
+### 🌍 Real-World Example
+When you run:
+
+```bash
+curl https://example.com
+````
+
+This is what happens under the hood:
+
+1. **DNS**: Your system resolves `example.com` into an IP address.
+2. **TCP**: A TCP connection is established on port `443`.
+3. **TLS (HTTPS)**: Encryption is negotiated for secure transfer.
+4. **HTTP**: A GET request is sent for the `/` resource.
+5. **Server Response**: The server replies with an HTML page.
+
+This single command uses **multiple protocols** working together in layers.
+
+---
+
+### 🧩 Key Takeaways
+
+* Protocols = **rules for communication**.
+* Standards allow **interoperability** across devices, OSes, and vendors.
+* Every time you open a website, check email, or SSH into a server, multiple protocols are working behind the scenes.
+
+---
+
+## 5. Data Transmission Basics
+
+At the core of networking is the process of **sending and receiving data**.  
+But computers do not send entire files or web pages in one go — instead, data is broken into **small packets**, which are then transmitted across the network.
+
+---
+
+### 📦 What is a Packet?
+- A **packet** is the basic unit of data transmitted over a network.  
+- Each packet contains:
+  - **Header** → Control information (source/destination IP, port, protocol type, sequence numbers).  
+  - **Payload** → The actual data being carried (HTML content, JSON response, etc.).  
+  - **Trailer** → Error-checking information (in some layers).  
+
+---
+
+### 🔄 Encapsulation & Decapsulation
+When data is sent from one computer to another, it passes through multiple layers of the networking stack.  
+Each layer **adds its own header** (encapsulation).  
+At the receiving end, each layer **removes its header** (decapsulation).
+
+#### Flow Example: Sending an HTTP request
+1. **Application Layer (HTTP):**  
+   - Data = `GET / HTTP/1.1` request.  
+2. **Transport Layer (TCP):**  
+   - Adds TCP header (source port, destination port, sequence number).  
+3. **Internet Layer (IP):**  
+   - Adds IP header (source IP, destination IP).  
+4. **Data Link Layer (Ethernet/WiFi):**  
+   - Adds MAC addresses of source and destination devices.  
+5. **Physical Layer:**  
+   - Converts the data into electrical signals, light pulses, or radio waves.  
+
+On the receiving side (the server), the reverse process happens (decapsulation).  
+
+---
+
+### 🌍 Real-World Example: Accessing `https://example.com`
+1. You type `https://example.com` in your browser.  
+2. The browser generates an **HTTP request**.  
+3. The request is encapsulated with TCP, IP, and Ethernet headers.  
+4. The data travels from:
+   - **Your laptop → WiFi router → ISP → Internet backbone → Server**.  
+5. At each hop, devices like **routers** examine the IP header to decide the next path.  
+6. At the destination, the server decapsulates the packet, processes the HTTP request, and sends back a response.  
+
+---
+
+### 📊 Packet Fragmentation
+- Networks have size limits called **MTU (Maximum Transmission Unit)**.  
+- If a packet is too large, it is **fragmented** into smaller packets.  
+- Example: Uploading a 10 MB file → broken into thousands of smaller packets.  
+
+---
+
+### 🧩 Key Takeaways
+- Data is always transmitted in **packets**, not as a whole file at once.  
+- **Encapsulation** wraps data with headers at each layer, and **decapsulation** unwraps them.  
+- Tools like **Wireshark** let engineers capture and analyze packets in real-time.  
+
+---
 
