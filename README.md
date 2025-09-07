@@ -532,3 +532,64 @@ Networking devices are the physical and virtual components that make communicati
 
 ---
 
+## 10. Network Topologies
+
+A **network topology** defines how devices (nodes) are arranged and interconnected in a network. The physical layout affects performance, fault tolerance, and scalability.
+
+---
+
+### 🔗 1. Bus Topology
+- All devices share a single backbone cable.  
+- Cheap but inefficient; if the backbone fails, the whole network goes down.  
+- Rarely used in modern IT.  
+- Example: Early Ethernet (10Base-2, coaxial cable) networks.  
+
+---
+
+### 🔗 2. Ring Topology
+- Each device connects to exactly two neighbors, forming a closed loop.  
+- Data passes through each node until it reaches its destination.  
+- If one node fails, the entire ring can break (unless dual-ring).  
+- Example: Some legacy telecom networks.  
+
+---
+
+### ⭐ 3. Star Topology
+- All devices connect to a central device (usually a **switch**).  
+- If one device fails, others remain unaffected.  
+- Central node failure = entire network failure.  
+- Example: Most **office LANs** today (devices connected to a switch).  
+- Cloud/DevOps analogy: A **Load Balancer** acts like the central hub, distributing requests to backend servers.  
+
+---
+
+### 🌳 4. Tree (Hierarchical) Topology
+- A combination of multiple star topologies arranged hierarchically.  
+- Used in large organizations to structure departments.  
+- Example:  
+  - Core router → Distribution switches → Access switches → End devices.  
+- Common in enterprise LANs.  
+
+---
+
+### 🕸️ 5. Mesh Topology
+- Every device is connected to every other device.  
+- Provides high redundancy and reliability.  
+- Expensive due to many connections.  
+- Example:  
+  - In cloud-native setups, **Service Mesh (Istio, Linkerd)** works similarly by enabling all microservices to communicate reliably.  
+
+---
+
+### 📶 6. Hybrid Topology
+- Combination of two or more topologies.   
+
+---
+
+### 🧩 Key Takeaways
+- **Bus/Ring** = old, rarely used today.  
+- **Star** = most common in modern LANs.  
+- **Tree** = scalable, hierarchical enterprise setup.  
+- **Mesh** = highly reliable, used in data centers and service meshes.  
+- **Hybrid** = real-world networks often combine topologies.  
+
