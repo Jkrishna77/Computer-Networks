@@ -949,3 +949,60 @@ Email delivery uses **SMTP (Simple Mail Transfer Protocol)**, **IMAP**, and **PO
 - **DNS** is the Internet’s phonebook, translating domains into IPs.
 - **Email** relies on SMTP, IMAP, POP3, and DNS MX records for reliable delivery.
 
+## 16. Sessions and Cookies
+
+Sessions and cookies are mechanisms used to **maintain state and user identity** across multiple requests in web applications. They are essential for authentication, personalization, and secure communication.
+
+---
+
+### 🔹 Cookies
+
+1. **Definition:** Small pieces of data stored on the **client-side (browser)**.  
+2. **Purpose:**  
+   - Maintain user preferences  
+   - Track user activity  
+   - Store session identifiers  
+3. **Types of Cookies:**  
+   - **Session Cookies:** Temporary, deleted when browser closes  
+   - **Persistent Cookies:** Stored for a defined period  
+   - **Secure Cookies:** Only sent over HTTPS  
+   - **HttpOnly Cookies:** Cannot be accessed via JavaScript (prevent XSS attacks)  
+
+**Example:**  
+- After logging into GitHub, a cookie stores your session token.  
+- Browser sends this cookie with each HTTP request to authenticate you automatically.
+
+---
+
+### 🔹 Sessions
+
+1. **Definition:** Server-side storage of **user state**.  
+2. **How it works:**  
+   - Server creates a **unique session ID** when a user logs in.  
+   - Session ID is sent to the client as a **cookie**.  
+   - Client sends session cookie with each request; server uses it to fetch stored session data.  
+
+**Example Flow:**  
+1. User logs into Gmail → server generates session ID `xyz123`.  
+2. Browser stores cookie: `Set-Cookie: session_id=xyz123`.  
+3. Subsequent requests include this cookie → server retrieves session info → user stays logged in.  
+
+---
+
+### 🔹 Client-Server Interaction with Cookies
+
+| Step | Action |
+|------|--------|
+| 1 | Client sends login request |
+| 2 | Server authenticates and creates session |
+| 3 | Server responds with **Set-Cookie** header |
+| 4 | Browser stores cookie and sends it in future requests |
+| 5 | Server reads cookie → fetches session data → maintains state |
+
+---
+
+### 🧩 Key Takeaways
+
+- **Cookies:** Client-side storage; lightweight; used to store session IDs and preferences.  
+- **Sessions:** Server-side storage; more secure; used to maintain user state across requests.  
+
