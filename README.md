@@ -903,3 +903,49 @@ TCP is **connection-oriented**, meaning a reliable connection must be establishe
 
 ---
 
+## 15. DNS (Domain Name System) and How Email Works
+
+DNS and email are fundamental services on the Internet. DNS translates human-readable domain names into IP addresses, while email systems handle sending, routing, and receiving messages.
+
+---
+
+### 🌐 DNS (Domain Name System)
+
+1. **Purpose:** Convert domain names (e.g., `example.com`) into IP addresses (`93.184.216.34`) that computers use to route packets.
+
+2. **How DNS Works (Simplified Flow)**
+   - User types `https://example.com` in browser.
+   - Browser checks **local DNS cache**.
+   - If not found, query goes to **recursive DNS server** (usually provided by ISP or corporate network).
+   - Recursive server queries **root DNS server** → **TLD server** (`.com`) → **authoritative DNS server** for `example.com`.
+   - Authoritative server returns **IP address** to recursive server, which forwards it to the client.
+   - Browser now knows which server to contact via TCP/IP.
+
+**Real-World DNS Example:**  
+- AWS Route53, Cloudflare DNS, or Google DNS provide scalable DNS resolution for global traffic.
+
+---
+
+### 📧 How Email Works
+
+Email delivery uses **SMTP (Simple Mail Transfer Protocol)**, **IMAP**, and **POP3** protocols.
+
+1. **Sending an Email (Client → Server)**
+   - User composes email in Gmail or Outlook.
+   - Email client connects to **SMTP server** (port 25, 587).
+   - SMTP server validates sender and forwards email to recipient’s mail server.
+
+2. **Routing via MX Records**
+   - Sender’s server looks up recipient domain’s **MX record** via DNS.
+   - Routes email to recipient’s SMTP server.
+
+3. **Receiving Email (Server → Client)**
+   - Recipient fetches email using **IMAP (port 143/993)** or **POP3 (port 110/995)**.
+   - IMAP keeps messages on server for multi-device access.
+   - POP3 downloads emails and optionally deletes from server.
+---
+
+### 🧩 Key Takeaways
+- **DNS** is the Internet’s phonebook, translating domains into IPs.
+- **Email** relies on SMTP, IMAP, POP3, and DNS MX records for reliable delivery.
+
