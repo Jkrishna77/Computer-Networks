@@ -253,3 +253,91 @@ On the receiving side (the server), the reverse process happens (decapsulation).
 
 ---
 
+## 6. IP Addressing
+
+Every device in a network needs a unique identifier to communicate.  
+That identifier is the **IP address (Internet Protocol address)**.
+
+---
+
+### 📍 What is an IP Address?
+- An **IP address** is a logical numeric address assigned to each device on a network.  
+- It identifies both:
+  - **Source** (where the packet came from).  
+  - **Destination** (where the packet is going).  
+
+Example:  
+When you ping Google (`ping google.com`), your packet might be routed to an IP like `142.250.77.78`.
+
+---
+
+### 🌐 IPv4
+- **32-bit address** (4 octets, written in decimal).  
+- Example: `192.168.1.10`  
+- Total: ~4.3 billion possible addresses.  
+- Problem: With billions of devices (IoT, cloud, mobile), IPv4 is not enough.  
+
+---
+
+### 🌍 IPv6
+- **128-bit address** (written in hexadecimal).  
+- Example: `2001:0db8:85a3:0000:0000:8a2e:0370:7334`  
+- Virtually unlimited addresses (~340 undecillion).  
+- Designed to replace IPv4, but both are used today (dual stack).  
+
+---
+
+### 🏠 Public vs Private IPs
+- **Public IP:** Globally routable on the Internet (e.g., a cloud VM’s IP).  
+- **Private IP:** Used within local networks, not accessible directly from Internet.  
+  - IPv4 private ranges:  
+    - `10.0.0.0 – 10.255.255.255`  
+    - `172.16.0.0 – 172.31.255.255`  
+    - `192.168.0.0 – 192.168.255.255`  
+
+**Real-world example:**  
+- In AWS, a **VPC subnet** may use private IPs (`10.x.x.x`).  
+- To access the Internet, instances go through a **NAT Gateway** with a public IP.  
+
+---
+
+### 🖧 Static vs Dynamic IPs
+- **Static IP:** Manually assigned, does not change. (e.g., database server).  
+- **Dynamic IP:** Assigned automatically by **DHCP**. (e.g., laptops on office WiFi).  
+
+---
+
+### ✂️ Subnetting & CIDR
+- Networks can be split into **subnets** for efficiency and security.  
+- **CIDR (Classless Inter-Domain Routing)** notation defines how many bits are used for network vs host.  
+  - Example: `192.168.1.0/24` → 256 IPs (from `.0` to `.255`).  
+
+**Real-world example:**  
+- A Kubernetes cluster might use `10.244.0.0/16` CIDR for pod networking.  
+- Each node/pod gets an IP from that range.  
+
+---
+
+### 🧪 Practical Commands
+- **Check your IP:**  
+  ```bash
+  ip addr show   # Linux
+  ipconfig       # Windows
+  ```
+
+- **Test connectivity (ping):**
+```bash
+ping 8.8.8.8
+```
+
+- **Trace packet path:**
+```bash
+traceroute google.com   # Linux
+tracert google.com      # Windows
+```
+### 🧩 Key Takeaways
+
+- IP address = unique logical identifier of a device.
+- IPv4 is running out → IPv6 is the future.
+- Public IP = Internet-facing, Private IP = internal use.
+- Subnetting & CIDR are crucial for cloud and DevOps networking.
