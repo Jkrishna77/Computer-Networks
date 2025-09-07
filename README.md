@@ -702,3 +702,47 @@ We will explain **how a user entering a URL in a browser travels through the lay
 - **Client**: Data flows **top-down (7 → 1)**, converted from user input → packets → bits.  
 - **Server**: Data flows **bottom-up (1 → 7)**, converted from bits → frames → packets → application data.  
 - OSI model layers map real-world processes like **HTTP request, TCP segmentation, IP routing, Ethernet switching, and physical transmission**.  
+
+## 12. TCP/IP Model
+
+The **TCP/IP model** is a simplified networking model used in real-world Internet communication. It has **4 layers** (sometimes described as 5) that correspond to OSI layers.
+
+---
+
+### TCP/IP Layers and Their OSI Mapping
+
+| TCP/IP Layer          | OSI Layer(s)        | Function | Real-World Example |
+|----------------------|-------------------|---------|------------------|
+| Application          | OSI 7,6,5          | Provides network services to applications. | HTTP request from a browser, SSH connection, DNS query |
+| Transport            | OSI 4              | Reliable/unreliable transport; manages ports and sessions. | TCP segment for `git clone https://github.com` or UDP for video streaming |
+| Internet / Network   | OSI 3              | Logical addressing, routing packets across networks. | IP packet carrying HTTP request from client IP to server IP |
+| Network Access / Link| OSI 2,1            | Physical and data link transmission over the medium. | Ethernet/WiFi frame sent over cables, fiber, or radio waves |
+
+---
+
+### 🌍 How a TCP/IP Request Works: Browser Example
+
+1. **Application Layer**  
+   - Browser generates an **HTTP GET request** to `https://example.com`.  
+   - Data includes headers, cookies, and encrypted TLS payload.  
+
+2. **Transport Layer**  
+   - TCP adds **source/destination ports**, sequence numbers, and checksums.  
+   - Data is now a **TCP segment**.  
+
+3. **Internet Layer**  
+   - TCP segment is encapsulated into an **IP packet** with source/destination IP addresses.  
+   - Routers use IP to forward the packet across networks.  
+
+4. **Network Access / Link Layer**  
+   - IP packet is encapsulated into an **Ethernet/WiFi frame** with MAC addresses.  
+   - Physical layer converts frames into **bits** for transmission.  
+
+---
+
+### ✅ Key Takeaways
+- TCP/IP is the **practical model used in real-world networking**.  
+- Maps closely to OSI model but is simpler and widely adopted.  
+- TCP/IP layers show **how data moves from application → transport → network → link → physical medium**.  
+---
+
