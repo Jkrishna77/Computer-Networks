@@ -467,3 +467,68 @@ Networking infrastructure defines how devices are physically and logically conne
 
 ---
 
+## 9. Networking Devices
+
+Networking devices are the physical and virtual components that make communication possible in IT environments. These devices forward, filter, and secure traffic between systems.
+
+---
+
+### 🖧 Switch
+- Operates at **Layer 2 (Data Link Layer)**.  
+- Forwards traffic based on **MAC addresses**.  
+- Connects multiple devices inside a **LAN**.  
+- Example: An office floor where all laptops connect to a switch, which builds a MAC address table to forward frames efficiently.  
+
+---
+
+### 🌐 Router
+- Operates at **Layer 3 (Network Layer)**.  
+- Forwards packets between different networks using **IP addresses**.  
+- Example: Your office LAN is connected to the Internet via a router. The router ensures traffic from `192.168.1.x` (private IP) can reach the public Internet.  
+
+---
+
+### 📡 Modem
+- Converts **digital signals** (computer) ↔ **analog signals** (telephone/cable lines).  
+- Example: Your ISP gives a modem that translates signals on coaxial/fiber lines into Ethernet that your router/switch can use.  
+
+---
+
+### 🔥 Firewall
+- Monitors and controls **incoming/outgoing traffic** based on rules.  
+- Can be hardware or software (e.g., iptables, AWS Security Groups).  
+- Example: Blocking all traffic except ports 22 (SSH) and 443 (HTTPS) on a production server.  
+
+---
+
+### ⚖️ Load Balancer
+- Distributes network traffic across multiple servers to ensure **high availability** and **scalability**.  
+- Example:  
+  - AWS Elastic Load Balancer distributing traffic across multiple EC2 instances running a web app.  
+  - NGINX or HAProxy used in Kubernetes ingress to balance traffic between pods.  
+
+---
+
+### 📶 Access Point (AP)
+- Extends a wired LAN into a **wireless network (WiFi)**.  
+- Example: Office WiFi AP allows laptops and mobile devices to join the LAN without Ethernet cables.  
+
+---
+
+### 🧰 Other Devices
+- **Hub** – A basic, outdated device that broadcasts packets to all connected devices (inefficient compared to a switch).  
+- **Gateway** – A device that translates between two different network protocols.  
+- **Proxy Server** – Acts as an intermediary between client and server for caching, filtering, or anonymity.  
+
+---
+
+### 🧩 Key Takeaways
+- **Switch** = connects devices inside a LAN using MAC addresses.  
+- **Router** = connects different networks using IP addresses.  
+- **Modem** = converts analog ↔ digital signals for ISP connections.  
+- **Firewall** = enforces security rules for network traffic.  
+- **Load Balancer** = distributes requests across multiple servers.  
+- **Access Point** = extends LAN to WiFi.  
+
+---
+
