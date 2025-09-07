@@ -37,5 +37,46 @@ All of this happens in **milliseconds**, powered by computer networks.
 
 ---
 
+## 2. History & Evolution of Networks
+
+Computer networking has evolved rapidly over the past few decades. Let’s focus on the **key changes that shaped today’s Internet**:
+
+---
+
+### 📡 Early Days
+- **1960s–70s:** ARPANET connected a few universities — the first step towards the Internet.  
+- Networks were limited, used mainly for research and text-based communication.  
+
+---
+
+### 💻 Client-Server Era
+- **1980s–90s:** Rise of **client-server model** — PCs connected to central servers for email, file sharing, and applications.  
+- Protocols like **SMTP (email), FTP (file transfer), HTTP (web)** became popular.  
+- Businesses began deploying **LANs (Local Area Networks)** in offices.  
+
+---
+
+### 🌍 Birth of the Internet
+- **1990s:** Networks worldwide connected, forming the **Internet**.  
+- Websites, web browsers, and ISPs became mainstream.  
+- **Optical fiber cables** and undersea cables started forming the global backbone.  
+
+---
+
+### ☁️ Modern Networking
+- **2000s–Present:**  
+  - **Cloud Computing (AWS, Azure, GCP):** On-demand servers and services accessible via the Internet.  
+  - **Mobile & Wireless:** WiFi, 4G/5G networks enable always-on connectivity.  
+  - **DevOps & Microservices:** Applications are distributed across multiple services communicating over APIs.  
+  - **Virtual Networks:** VPNs, SDN (Software Defined Networking), and container networking (Kubernetes CNIs).  
+
+---
+
+### 🧩 Key Takeaways
+- Networking moved from **research → business → Internet → cloud-native world**.  
+- Today, almost all modern IT infrastructure — from Kubernetes clusters to CI/CD pipelines — relies on computer networks.  
+
+---
+
 
 
