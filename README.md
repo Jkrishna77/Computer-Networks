@@ -824,3 +824,82 @@ Understanding how data is structured and validated in transit is crucial for rel
 
 ---
 
+## 14. TCP and UDP – Transport Layer Protocols
+
+The **Transport Layer** ensures end-to-end communication between applications on different devices. TCP and UDP are the most widely used transport protocols.
+
+---
+
+### 🟢 TCP (Transmission Control Protocol)
+
+#### 1. 3-Way Handshake (Connection Establishment)
+TCP is **connection-oriented**, meaning a reliable connection must be established before data transfer.
+
+**Steps:**
+1. **SYN**: Client sends a synchronize (SYN) packet to the server to initiate connection.  
+2. **SYN-ACK**: Server acknowledges (ACK) and sends its own SYN to the client.  
+3. **ACK**: Client acknowledges the server’s SYN.  
+- Connection established; data transfer begins.
+
+**Example:**  
+- `ssh ubuntu@server` → TCP handshake on port 22 ensures reliable connection before login.
+
+---
+
+#### 2. Data Transfer & Flow Control
+- TCP breaks data into **segments** and assigns **sequence numbers**.  
+- Receiver sends **ACKs** to confirm successful receipt.  
+- **Flow control** ensures sender does not overwhelm the receiver.  
+- **Retransmission** occurs if ACK is not received within a timeout.
+
+**Example:**  
+- `git clone https://github.com` → large data transferred reliably with sequencing and acknowledgments.
+
+---
+
+#### 3. Connection Termination
+- TCP uses a **4-step FIN-ACK process** to gracefully close a connection.  
+
+---
+
+### 🔵 UDP (User Datagram Protocol)
+- **Connectionless**: No handshake, no acknowledgment.  
+- Lightweight and faster than TCP.  
+- Data is sent as **datagrams**, which may arrive out of order or get lost.  
+- Use cases:
+  - DNS queries (`port 53`)  
+  - Video/voice streaming (VoIP)  
+  - Online gaming  
+
+**Example:**  
+- Streaming a live webinar uses UDP to minimize latency; occasional packet loss is acceptable.
+
+---
+
+### ⚡ Comparison: TCP vs UDP
+
+| Feature | TCP | UDP |
+|---------|-----|-----|
+| Connection | Connection-oriented | Connectionless |
+| Reliability | Reliable (ACKs, retransmission) | Unreliable |
+| Speed | Slower | Faster |
+| Use Case | Web, SSH, Git, Email | Video streaming, DNS, VoIP |
+| Flow Control | Yes | No |
+| Error Checking | Checksum, ACK | Checksum only |
+
+---
+
+### 🌍 Real-World Example
+1. **Web browsing (HTTPS)**: TCP ensures that all HTML, CSS, JS files arrive in order and intact.  
+2. **Live video call**: UDP is used because real-time delivery is more important than perfect reliability. 
+
+---
+
+### 🧩 Key Takeaways
+- **TCP** = reliable, ordered, connection-oriented (critical for DevOps tools, Git, SSH, HTTP).  
+- **UDP** = fast, connectionless, suitable for real-time apps.  
+- **3-way handshake, flow control, and retransmission** make TCP robust for IT workloads.  
+
+
+---
+
