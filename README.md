@@ -78,5 +78,59 @@ Computer networking has evolved rapidly over the past few decades. Let’s focus
 
 ---
 
+## 3. Networking Architectures
+
+The way devices communicate in a network can be organized into different **architectures**. The two most common are **Client-Server** and **Peer-to-Peer (P2P)**.
+
+---
+
+### 🖥️ Client-Server Architecture
+In this model, one system acts as the **server** (provides services or resources), and the other systems act as **clients** (request services).
+
+- **How it works:**
+  1. The client sends a request (e.g., “give me the homepage”).
+  2. The server processes the request.
+  3. The server sends a response back to the client.
+
+- **Real-world IT examples:**
+  - **Web Applications:** Your browser (client) requests data from a web server (GitHub, Gmail, Netflix).  
+  - **Databases:** An application connects to a database server (MySQL, PostgreSQL) to fetch records.   
+
+- **Advantages:**
+  - Centralized control and management.
+  - Easier to secure and monitor.
+- **Disadvantages:**
+  - Server can become a bottleneck.
+  - If server fails → service downtime.
+
+---
+
+### 🤝 Peer-to-Peer (P2P) Architecture
+In this model, **each device (peer)** can act as both **client and server**. There’s no single point of control.
+
+- **How it works:**
+  - Devices connect directly and share resources with each other.
+
+- **Real-world IT examples:**
+  - **BitTorrent:** Peers share pieces of a file with each other.  
+  - **Blockchain & Cryptocurrencies:** Every node maintains a copy of the ledger and validates transactions.  
+  - **Collaboration Tools:** Some messaging apps (early Skype versions) used P2P for direct communication.  
+
+- **Advantages:**
+  - Highly scalable (no central server dependency).
+  - Resource sharing is distributed.  
+- **Disadvantages:**
+  - Harder to secure and manage.
+  - Performance depends on peers’ availability.  
+
+---
+
+### 🧩 Key Takeaways
+- **Client-Server**: Centralized, reliable, but server can be a bottleneck.  
+- **P2P**: Decentralized, scalable, but harder to control.  
+- Modern systems often use a **hybrid approach** (e.g., P2P for file distribution + central servers for authentication).  
+
+---
+
 
 
