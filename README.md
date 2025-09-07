@@ -746,3 +746,81 @@ The **TCP/IP model** is a simplified networking model used in real-world Interne
 - TCP/IP layers show **how data moves from application → transport → network → link → physical medium**.  
 ---
 
+## 13. IP Packets, Segments, Frames, and Checksum
+
+Understanding how data is structured and validated in transit is crucial for reliable networking. This section explains **how data is encapsulated and checked for errors**.
+
+---
+
+### 📦 1. TCP Segment
+- **Transport layer (Layer 4)** divides application data into **segments**.  
+- Each segment contains:
+  - Source & destination ports
+  - Sequence number
+  - Acknowledgment number
+  - Flags (SYN, ACK, FIN)
+  - Payload (application data)
+  - **Checksum** for error detection at transport layer  
+- Example: Browser sends an HTTP GET request as a TCP segment to port 443 on a web server.
+
+---
+
+### 🌐 2. IP Packet
+- **Network layer (Layer 3)** encapsulates TCP segments into **IP packets**.  
+- Each packet contains:
+  - Source & destination IP addresses
+  - TTL (Time to Live)
+  - Protocol (TCP/UDP)
+  - Header checksum (for header integrity)
+  - Encapsulated TCP segment as payload
+- Example: TCP segment from client port 50512 → server port 443 is wrapped inside an IP packet destined for the server’s public IP.
+
+---
+
+### 🖧 3. Ethernet / WiFi Frame
+- **Data Link layer (Layer 2)** encapsulates IP packets into **frames**.  
+- Each frame contains:
+  - Source & destination MAC addresses
+  - EtherType (protocol type)
+  - Payload (IP packet)
+  - Frame Check Sequence (FCS) / CRC for error detection
+- Example: NIC sends Ethernet frame over switch port or WiFi access point.
+
+---
+
+### ⚡ 4. Physical Layer – Bits
+- **Layer 1** converts frames into **electrical signals, light pulses, or radio waves**.  
+- The data is transmitted as a **stream of bits** over the physical medium.
+
+---
+
+### ✅ Checksum – Ensuring Data Integrity
+- Both **Transport (TCP)** and **Network (IP)** layers include **checksum fields**.  
+- Purpose: Detect errors during transmission.  
+- Mechanism:
+  1. Sender calculates a checksum from header/data.  
+  2. Receiver recalculates checksum and compares.  
+  3. Mismatch → packet is discarded or retransmitted (TCP).  
+- Example: TCP segment with corrupted data triggers **retransmission**.
+
+---
+
+### 🧩 Summary of Encapsulation
+| Layer | Encapsulation Unit | Error Detection |
+|-------|-----------------|----------------|
+| Transport | TCP Segment | Checksum |
+| Network | IP Packet | Header Checksum |
+| Data Link | Ethernet/WiFi Frame | FCS / CRC |
+| Physical | Bits | Not applicable |
+
+---
+
+### 🌍 Real-World IT Example
+- When you `curl https://github.com`:
+  1. HTTP request → TCP segment → IP packet → Ethernet frame → bits sent over cable/fiber/WiFi.  
+  2. Switches forward frames based on MAC, routers forward packets based on IP.  
+  3. Server NIC receives bits → frame → packet → segment → HTTP request.  
+  4. Checksums at TCP/IP layers ensure **data was not corrupted** during transit.
+
+---
+
