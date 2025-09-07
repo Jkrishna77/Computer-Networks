@@ -266,8 +266,9 @@ That identifier is the **IP address (Internet Protocol address)**.
   - **Source** (where the packet came from).  
   - **Destination** (where the packet is going).  
 
-Example:  
-When you ping Google (`ping google.com`), your packet might be routed to an IP like `142.250.77.78`.
+Example:
+- When you call your friend, from contacts you will be calling to his name but in back ground its dailing to his unique mobile number.  
+- When you ping Google (`ping google.com`), your packet might be routed to an IP like `142.250.77.78` (Google has many servers in your case it might be differ).
 
 ---
 
@@ -289,11 +290,7 @@ When you ping Google (`ping google.com`), your packet might be routed to an IP l
 
 ### 🏠 Public vs Private IPs
 - **Public IP:** Globally routable on the Internet (e.g., a cloud VM’s IP).  
-- **Private IP:** Used within local networks, not accessible directly from Internet.  
-  - IPv4 private ranges:  
-    - `10.0.0.0 – 10.255.255.255`  
-    - `172.16.0.0 – 172.31.255.255`  
-    - `192.168.0.0 – 192.168.255.255`  
+- **Private IP:** Used within local networks, not accessible directly from Internet.   
 
 **Real-world example:**  
 - In AWS, a **VPC subnet** may use private IPs (`10.x.x.x`).  
