@@ -338,3 +338,132 @@ tracert google.com      # Windows
 - IPv4 is running out → IPv6 is the future.
 - Public IP = Internet-facing, Private IP = internal use.
 - Subnetting & CIDR are crucial for cloud and DevOps networking.
+
+## 7. Ports & Sockets
+
+An IP address identifies a **device** on a network, but a device can run many services at the same time (web server, SSH, database, etc.).  
+To distinguish between them, we use **ports**.
+
+---
+
+### 🔢 What is a Port?
+- A **port** is a 16-bit number (0–65535) that identifies a specific process or service running on a device.  
+- **Well-known ports** (0–1023) are reserved for common services.  
+- Examples:
+  - **22** → SSH  
+  - **53** → DNS  
+  - **80** → HTTP  
+  - **443** → HTTPS  
+  - **3306** → MySQL  
+
+---
+
+### 🔌 What is a Socket?
+- A **socket** = **IP Address + Port Number**.  
+- This uniquely identifies a connection.  
+- Example:  
+  - Client (your laptop): `192.168.1.5:50512`  
+  - Server (GitHub): `140.82.xx.xx:443`  
+  - Together, they form a socket pair that enables communication.  
+
+---
+
+### 🌍 Real-World Examples
+#### 1. SSH into a Server
+
+```bash
+ssh ubuntu@34.120.xx.xx -p 22
+```
+
+* Your laptop uses a random port (e.g., `50512`) to connect to the server’s port `22`.
+
+#### 2. Web Browsing
+
+* Browser connects to `github.com:443` (HTTPS).
+* Multiple tabs can open different sockets to the same server IP.
+
+#### 3. Databases in DevOps
+
+* Application connects to `db.internal.company:3306` (MySQL).
+* Only the DB server listens on that port; firewall rules restrict access.
+
+#### 4. Kubernetes Services
+
+* A pod running NGINX might listen on port `80`.
+* A Kubernetes Service maps it to a NodePort (e.g., `30080`) or LoadBalancer port.
+
+### 🔐 Ephemeral Ports
+
+* When your system initiates a connection, it picks a random high-numbered port (usually `49152–65535`).
+* This is called an **ephemeral port**.
+* That’s why you can open multiple browser tabs to the same website — each uses a different ephemeral port.
+
+### 🧩 Key Takeaways
+
+- **IP** = device address
+- **Port** = service address
+- **Socket** = IP + Port uniquely identifies a connection
+- Well-known ports are standardized for common protocols
+- DevOps engineers must know ports when configuring firewalls, load balancers, and Kubernetes services
+
+## 8. Networking Infrastructure
+
+Networking infrastructure defines how devices are physically and logically connected. Depending on scale, we classify networks into different types.
+
+---
+
+### 🖥️ Local Area Network (LAN)
+- Covers a **small geographic area** (office, home, campus).  
+- High speed (up to 1–10 Gbps commonly).  
+- Usually built with **Ethernet (wired)** or **WiFi (wireless)**.  
+- Example:  
+  - Your office floor where all employee laptops, IP phones, and printers are connected to a central switch.  
+  - Internal systems like Jenkins, GitLab runners, or a local database cluster may be accessible only via LAN.  
+
+---
+
+### 🏙️ Metropolitan Area Network (MAN)
+- Covers a **city or large campus**.  
+- Connects multiple LANs together using fiber optics.  
+- Example:  
+  - A university with several departments connected via MAN.  
+  - An ISP (Internet Service Provider) using MAN to connect data centers within a city.  
+
+---
+
+### 🌍 Wide Area Network (WAN)
+- Covers a **large geographic area** (country or continent).  
+- The **Internet itself is the largest WAN**.  
+- Example:  
+  - A company’s branch office in Bengaluru accessing databases hosted in AWS Mumbai region.  
+  - VPN tunnels connecting corporate offices across the globe.  
+
+---
+
+### 📱 Personal Area Network (PAN)
+- Very small network (a few meters).  
+- Example:  
+  - Developer using Bluetooth tethering to connect laptop ↔ mobile hotspot.  
+  - Wireless keyboard/mouse connected to a workstation.  
+
+---
+
+### 🌐 Submarine Cables (Optical Fiber Backbone)
+- The Internet heavily depends on **undersea optical fiber cables**.  
+- These cables transmit data between continents at **Tbps speed**.  
+- Example in IT:  
+  - When you open `github.com` in India, your request might travel through submarine cables to GitHub’s data centers in the US or Europe.  
+- Without submarine cables, cloud services, SaaS products, and global communication would be impossible.  
+
+---
+
+### 🧩 Key Takeaways
+- **LAN** = office/home networks.  
+- **MAN** = city-wide networks.  
+- **WAN** = country/continent-wide, the Internet itself.  
+- **PAN** = personal small-scale connections.  
+- **Submarine cables** are the backbone of global connectivity.  
+- DevOps engineers rely on this layered infrastructure to connect CI/CD systems, cloud environments, and global services.  
+
+---
+
