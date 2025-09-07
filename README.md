@@ -593,3 +593,112 @@ A **network topology** defines how devices (nodes) are arranged and interconnect
 - **Mesh** = highly reliable, used in data centers and service meshes.  
 - **Hybrid** = real-world networks often combine topologies.  
 
+## 11. OSI Model (7 Layers) – Client to Server Flow
+
+The **OSI model** defines seven layers of networking abstraction.  
+We will explain **how a user entering a URL in a browser travels through the layers at the client side** and how it is processed **at the server side**.
+
+---
+
+### 🌐 Scenario: User types `https://example.com` in a browser
+
+---
+
+## Client Side: Layer 7 → Layer 1 (Top-Down)
+
+1. **Layer 7 – Application Layer**
+   - The browser takes the URL and prepares an **HTTP GET request**:  
+     ```
+     GET / HTTP/1.1
+     Host: example.com
+     ```
+   - Adds application-specific metadata (cookies, headers).  
+   - Data at this layer: **HTTP request (application data)**
+
+2. **Layer 6 – Presentation Layer**
+   - Converts the data into a **network-compatible format**.  
+   - Handles encryption (TLS/SSL), compression, and encoding.  
+   - Example: HTTP request is encrypted into **HTTPS (TLS record)**.  
+   - Data at this layer: **Encrypted HTTP payload**
+
+3. **Layer 5 – Session Layer**
+   - Manages the session between client and server.  
+   - Establishes/maintains/terminates sessions.  
+   - Example: Session is maintained so user is not required to login again and again.
+   - Like Gmail we logged in long back but still we can directly access our inbox without password every now and then
+
+4. **Layer 4 – Transport Layer**
+   - TCP splits the data into **segments**.  
+   - Adds **source and destination port numbers** (e.g., client ephemeral port 50512 → server port 443).  
+   - Ensures reliability: sequence numbers, checksums, acknowledgments.  
+   - Data at this layer: **TCP segments containing encrypted HTTP payload**
+
+5. **Layer 3 – Network Layer**
+   - Encapsulates TCP segments into **IP packets**.  
+   - Adds **source and destination IP addresses**.  
+   - Routing decisions are made here (how packet moves from client → server across networks).  
+   - Data at this layer: **IP packets with TCP segments inside**
+
+6. **Layer 2 – Data Link Layer**
+   - Encapsulates IP packets into **frames**.  
+   - Adds **MAC addresses** for local delivery (client NIC → switch → router).  
+   - Error detection via CRC.  
+   - Data at this layer: **Ethernet/WiFi frame**
+
+7. **Layer 1 – Physical Layer**
+   - Converts frames into **electrical signals, light pulses, or radio waves**.  
+   - Data is transmitted over **cables, fiber, or wireless medium**.  
+   - Data at this layer: **bits traveling through the medium**
+
+---
+
+## Server Side: Layer 1 → Layer 7 (Bottom-Up)
+
+1. **Layer 1 – Physical Layer**
+   - Server’s NIC receives **bits** from the physical medium.  
+   - Signals are converted back to frames.  
+
+2. **Layer 2 – Data Link Layer**
+   - Checks MAC addresses, error detection, and extracts **Ethernet frame** payload.  
+   - Passes IP packet to Layer 3.
+
+3. **Layer 3 – Network Layer**
+   - Reads **destination IP**, verifies it belongs to server.  
+   - Extracts TCP segment from IP packet.  
+
+4. **Layer 4 – Transport Layer**
+   - Uses **destination port** to deliver segment to the correct application.  
+   - Reassembles multiple TCP segments into complete **encrypted HTTP message**.  
+
+5. **Layer 5 – Session Layer**
+   - Associates incoming data with the correct **TLS session**.  
+
+6. **Layer 6 – Presentation Layer**
+   - Decrypts TLS payload.  
+   - Converts network bytes into **application-readable data (HTTP request)**.  
+
+7. **Layer 7 – Application Layer**
+   - Web server processes HTTP request.  
+   - Fetches homepage, generates HTTP response.  
+   - Response now travels **top-down Layer 7 → Layer 1** back to client.  
+
+---
+
+### 🔄 Summary of Data Transformation
+
+| Layer | Client Side Data Transformation | Server Side Data Transformation |
+|-------|-------------------------------|-------------------------------|
+| 7 App | HTTP GET Request | HTTP GET Request received |
+| 6 Presentation | TLS Encrypted | TLS Decrypted |
+| 5 Session | Session data | Session association |
+| 4 Transport | TCP segments with ports | TCP segments reassembled |
+| 3 Network | IP packets with source/dest IP | IP packets extracted |
+| 2 Data Link | Ethernet/WiFi frames | Frames decoded |
+| 1 Physical | Bits over medium | Bits received from medium |
+
+---
+
+### 🧩 Key Takeaways
+- **Client**: Data flows **top-down (7 → 1)**, converted from user input → packets → bits.  
+- **Server**: Data flows **bottom-up (1 → 7)**, converted from bits → frames → packets → application data.  
+- OSI model layers map real-world processes like **HTTP request, TCP segmentation, IP routing, Ethernet switching, and physical transmission**.  
